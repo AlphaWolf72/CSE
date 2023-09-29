@@ -30,6 +30,7 @@ class Stock {
      */
     public synchronized void stocker() {
         nbPieces++;
+        notify();
     }
 
     /**
@@ -37,6 +38,14 @@ class Stock {
      * Ajout de synchronized pour ordonancer l'éxecution de la méthode par les treads
      */
     public synchronized void destocker() {
+
+        if(nbPieces <= 0){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         nbPieces--;
     }
 

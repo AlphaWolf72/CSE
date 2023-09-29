@@ -41,7 +41,7 @@ class Atelier extends Thread{
     //car elle dépendra de l'ordonenceur
     public void transformer() {
         A.destocker();
-        System.out.println("Le "+Thread.currentThread().getName()+" vient de dépiler."+A.afficher());
+        System.out.println("Le "+Thread.currentThread().getName()+" vient de dépiler."+A.afficher()+" "+B.afficher());
         try { Thread.sleep(100); } catch(InterruptedException e) {}
         B.stocker();
     }
