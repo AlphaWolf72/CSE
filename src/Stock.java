@@ -26,6 +26,7 @@ class Stock {
 
     /**
      * Poser une piece sur le haut de la pile de pieces
+     * Ajout de synchronized pour ordonancer l'éxecution de la méthode par les treads
      */
     public synchronized void stocker() {
         nbPieces++;
@@ -33,6 +34,7 @@ class Stock {
 
     /**
      * Saisir une piece sur le haut de la pile de pieces
+     * Ajout de synchronized pour ordonancer l'éxecution de la méthode par les treads
      */
     public synchronized void destocker() {
         nbPieces--;

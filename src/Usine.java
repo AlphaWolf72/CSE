@@ -10,7 +10,7 @@ class Usine {
 	/**
 	 * Stock de pieces a transformer
 	 */
-    Stock stockDepart = new Stock("de depart", 10);
+    Stock stockDepart = new Stock("de depart", 1000);
     /**
      * Stock de pieces transformees
      */
@@ -18,8 +18,8 @@ class Usine {
     /**
      * Ateliers de transformation
      */
-    Atelier atelier1 = new Atelier(stockDepart, stockFin, 5);
-    Atelier atelier2 = new Atelier(stockDepart, stockFin, 5);
+    Atelier atelier1 = new Atelier(stockDepart, stockFin, 500);
+    Atelier atelier2 = new Atelier(stockDepart, stockFin, 500);
 
     /**
      * Effectuer le travail de l'usine
@@ -37,7 +37,6 @@ class Usine {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         stockDepart.afficher();
         stockFin.afficher();
     }
