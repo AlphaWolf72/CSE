@@ -1,6 +1,3 @@
-// PENSEZ A INDIQUER PAR DES COMMENTAIRES LES MODIFICATIONS APPORTEES A CE SQUELETTE AU FUR
-// ET A MESURE DE L'EVOLUTION DU CODE DEMANDEE DANS LE TP.
-
 /**
  * Les objets instances de la classe Stock representent un ensemble de pieces,
  * empilees les unes sur les autres. Du fait de la disposition en piles, il n'est
@@ -30,14 +27,14 @@ class Stock {
     /**
      * Poser une piece sur le haut de la pile de pieces
      */
-    public void stocker() {
+    public synchronized void stocker() {
         nbPieces++;
     }
 
     /**
      * Saisir une piece sur le haut de la pile de pieces
      */
-    public void destocker() {
+    public synchronized void destocker() {
         nbPieces--;
     }
 

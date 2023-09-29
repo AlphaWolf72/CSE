@@ -1,6 +1,3 @@
-// PENSEZ A INDIQUER PAR DES COMMENTAIRES LES MODIFICATIONS APPORTEES A CE SQUELETTE AU FUR
-// ET A MESURE DE L'EVOLUTION DU CODE DEMANDEE DANS LE TP.
-
 /**
  * Les objets instances de la classe Atelier representent des ateliers de transformation.
  * Le fonctionnement est le suivant : l'appel a transformer retire un element du stock A,
@@ -8,7 +5,7 @@
  * La methode travailler() effectue n transformations successives, n etant un parametre
  * fourni a la creation de l'objet.
  */
-class Atelier {
+class Atelier extends Thread{
 
 	/**
 	 * Le stock de fourniture de depart
@@ -48,7 +45,8 @@ class Atelier {
     /**
      * Effectue nbTransfo transformations
      */
-    public void travailler() {
+    @Override
+    public void run() {
         for(; nbTransfo > 0; nbTransfo--)
             transformer();
     }

@@ -1,6 +1,3 @@
-// PENSEZ A INDIQUER PAR DES COMMENTAIRES LES MODIFICATIONS APPORTEES A CE SQUELETTE AU FUR
-// ET A MESURE DE L'EVOLUTION DU CODE DEMANDEE DANS LE TP.
-
 /**
  * Les objets instances de la classe Usine represente une usine avec deux ateliers.
  * Une instance d'Usine possede un stock de pieces a transformer ainsi qu'un stock
@@ -30,10 +27,19 @@ class Usine {
      * l'evolution de l'etat des stocks.
      */
     public void fonctionner() {
-    		atelier1.travailler();
-    		atelier2.travailler();
-    		stockDepart.afficher();
-    		stockFin.afficher();
+        atelier1.start();
+        atelier2.start();
+
+        // Attend que les ateliers aient terminé leur travail
+        try {
+            atelier1.join();
+            atelier2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        stockDepart.afficher();
+        stockFin.afficher();
     }
 
     /**
