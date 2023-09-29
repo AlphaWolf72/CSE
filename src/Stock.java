@@ -43,8 +43,8 @@ class Stock {
     /**
      * Affiche l'etat de l'objet stock
      */
-    public void afficher() {
-        System.out.println("Le stock " + nom + " contient " + nbPieces + " piece(s).");
+    public String afficher() {
+        return ("Le stock " + nom + " contient " + nbPieces + " piece(s).");
     }
 
 }
