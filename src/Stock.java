@@ -13,15 +13,20 @@ class Stock {
      * Le nom du stock
      */
     private String nom;
+    /**
+     * Le nombre maximum de pièce(s) dans le stock
+     */
+    private int maxPieces;
 
     /**
      * Creer un nouvel objet instance de stock
      * @param nom Le nom du nouveau stock
      * @param nbPieces Le nombre de pieces initial
      */
-    public Stock(String nom, int nbPieces) {
+    public Stock(String nom, int nbPieces, int maxPieces) {
         this.nbPieces = nbPieces;
         this.nom = nom;
+        this.maxPieces = maxPieces;
     }
 
     /**
@@ -29,8 +34,17 @@ class Stock {
      * Ajout de synchronized pour ordonancer l'éxecution de la méthode par les treads
      */
     public synchronized void stocker() {
+        //comme on veut trvailler en flux tendu
+        // on verifie que notre nombre de pièces ne dépasse pas le maximum que l'atelier peux stocker
+        while (nbPieces > maxPieces){
+            try {
+                wait(); // on attend, pour avoir le droit de modifier la variable
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         nbPieces++;
-        notify();
+        notifyAll();
     }
 
     /**
@@ -47,6 +61,7 @@ class Stock {
             }
         }
         nbPieces--;
+        notifyAll();
     }
 
     /**

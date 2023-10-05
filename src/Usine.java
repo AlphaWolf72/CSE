@@ -10,19 +10,20 @@ class Usine {
 	/**
 	 * Stock de pieces a transformer
 	 */
-    Stock stockDepart = new Stock("de depart", 10);
+    Stock stockDepart = new Stock("de depart", 10,10);
     /**
      * Stock de pieces intermédiaire
      */
-    Stock stockIntermediaire = new Stock("de intermédiaire", 0);
+    Stock stockIntermediaire = new Stock("de intermédiaire", 0,1);
     /**
      * Stock de pieces transformees
      */
-    Stock stockFin = new Stock("d'arrivee", 0);
+    Stock stockFin = new Stock("d'arrivee", 0,10);
     /**
      * Ateliers de transformation
      */
-    Atelier atelier1 = new Atelier(stockDepart, stockIntermediaire, 10);
+    Atelier atelier1 = new Atelier(stockDepart, stockIntermediaire, 5);
+    Atelier atelier1bis = new Atelier(stockDepart, stockIntermediaire, 5);
     Atelier atelier2 = new Atelier(stockIntermediaire, stockFin, 5);
     Atelier atelier3 = new Atelier(stockIntermediaire, stockFin, 5);
 
@@ -33,20 +34,22 @@ class Usine {
      */
     public void fonctionner() {
         atelier1.start();
+        atelier1bis.start();
         atelier2.start();
         atelier3.start();
 
         // Attend que les ateliers aient terminé leur travail
         try {
             atelier1.join();
+            atelier1bis.join();
             atelier2.join();
             atelier3.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        stockDepart.afficher();
-        stockIntermediaire.afficher();
-        stockFin.afficher();
+        System.out.println(stockDepart.afficher());
+        System.out.println(stockIntermediaire.afficher());
+        System.out.println(stockFin.afficher());
     }
 
     /**
