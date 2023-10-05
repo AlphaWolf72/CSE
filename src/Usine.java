@@ -23,9 +23,8 @@ class Usine {
      * Ateliers de transformation
      */
     Atelier atelier1 = new Atelier(stockDepart, stockIntermediaire, 10);
-    Atelier atelier2 = new Atelier(stockIntermediaire, stockFin, 10);
-
-    Atelier atelier3 = new Atelier(stockDepart, stockIntermediaire, 10);
+    Atelier atelier2 = new Atelier(stockIntermediaire, stockFin, 5);
+    Atelier atelier3 = new Atelier(stockIntermediaire, stockFin, 5);
 
     /**
      * Effectuer le travail de l'usine
@@ -35,11 +34,13 @@ class Usine {
     public void fonctionner() {
         atelier1.start();
         atelier2.start();
+        atelier3.start();
 
         // Attend que les ateliers aient terminé leur travail
         try {
             atelier1.join();
             atelier2.join();
+            atelier3.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
