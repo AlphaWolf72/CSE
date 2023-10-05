@@ -38,10 +38,9 @@ class Stock {
      * Ajout de synchronized pour ordonancer l'éxecution de la méthode par les treads
      */
     public synchronized void destocker() {
-
-        if(nbPieces <= 0){
+        if(nbPieces <= 0){ // on vérifie que le nombre de pièces, pour éviter dans prendre quand il n'y en a plus
             try {
-                wait();
+                wait(); // on attend, pour avoir le droit de modifier la variable
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
