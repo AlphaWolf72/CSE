@@ -25,6 +25,8 @@ class Usine {
     Atelier atelier1 = new Atelier(stockDepart, stockIntermediaire, 10);
     Atelier atelier2 = new Atelier(stockIntermediaire, stockFin, 10);
 
+    Atelier atelier3 = new Atelier(stockDepart, stockIntermediaire, 10);
+
     /**
      * Effectuer le travail de l'usine
      * Utilise successivement chaque atelier pour transformer une piece et affiche
